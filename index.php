@@ -13,7 +13,10 @@
                     <button name="t" value="0" type="submit">Search with LibreX</button>
                     <button name="t" value="3" type="submit">Search torrents with LibreX</button>
 		</div>
-		<a href="https://icecatbrowser.org">Download GNU Icecat for your PC</a>
         </form>
 
+		<center>
+			<a href="https://icecatbrowser.org"><img src="static/images/logo.png"></a>
+			<a href="https://icecatbrowser.org">Download GNU Icecat for your PC</a>
+		</center>
 <?php require "misc/footer.php"; ?>
