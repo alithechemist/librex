@@ -1,8 +1,9 @@
 <?php require "misc/header.php"; ?>
 
-    <title>LibreX</title>
+    <title>LibreX For Icecat</title>
     </head>
     <body>
+	<h3><a href="https://icecatbrowser.org">Icecat browser</a></h3>
         <form class="search-container" action="search.php" method="get" autocomplete="off">
                 <h1>Libre<span class="X">X</span></h1>
                 <input type="text" name="q" autofocus/>

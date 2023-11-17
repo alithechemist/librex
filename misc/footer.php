@@ -4,6 +4,7 @@
     <a href="./settings.php">Settings</a>
     <a href="./api.php" target="_blank">API</a>
     <a href="./donate.php">Donate ❤️</a>
+    <a href="https://icecatbrowser.org">Icecat</a>
 </div>
 <div class="git-container">
     <?php
