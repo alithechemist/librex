@@ -3,7 +3,9 @@
     <title>LibreX For Icecat</title>
     </head>
     <body>
-        <form class="search-container" action="search.php" method="get" autocomplete="off">
+	<form class="search-container" action="search.php" method="get" autocomplete="off">
+		<img src="static/images/Icecat1-300x300.png">
+		<a href="https://icecatbrowser.org">Download Gnu Icecat</a>
                 <h1>Libre<span class="X">X</span></h1>
                 <input type="text" name="q" autofocus/>
                 <input type="hidden" name="p" value="0"/>
@@ -15,8 +17,5 @@
 		</div>
         </form>
 
-		<center>
-			<a href="https://icecatbrowser.org"><img src="static/images/logo.png"></a>
-			<a href="https://icecatbrowser.org">Download GNU Icecat for your PC</a>
-		</center>
 <?php require "misc/footer.php"; ?>
+
