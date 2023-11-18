@@ -1,3 +1,8 @@
+
+<?php
+$_COOKIE["theme"]="light"
+
+?>
 <!DOCTYPE html >
 <html lang="en">
     <head>

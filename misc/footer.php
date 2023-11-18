@@ -2,7 +2,6 @@
     <a href="./">LibreX</a>
     <a href="https://github.com/hnhx/librex/" target="_blank">Source &amp; Instances</a>
     <a href="./settings.php">Settings</a>
-    <a href="./api.php" target="_blank">API</a>
     <a href="./donate.php">Donate ❤️</a>
     <a href="https://icecatbrowser.org">Icecat</a>
 </div>
