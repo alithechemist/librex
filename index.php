@@ -6,6 +6,8 @@
 	<form class="search-container" action="search.php" method="get" autocomplete="off">
 		<a href="https://icecatbrowser.org"><img src="static/images/Icecat1-300x300.png" width="150" height="150" alt="Download Gnu Icecat for your PC"></a>
                 <h1>Libre<span class="X">X</span></h1>
+                <h3>Notice:</h3>
+                <p>It seems that hnhx, the author of this meta-search engine, recently passed.<br /></p>
                 <input type="text" name="q" autofocus/>
                 <input type="hidden" name="p" value="0"/>
                 <input type="hidden" name="t" value="0"/>

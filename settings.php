@@ -45,7 +45,7 @@
         <div class="misc-container">
             <h1>Settings</h1>
             <form method="post" enctype="multipart/form-data" autocomplete="off">
-              <!--<div>
+              <div>
                 <label for="theme">Theme:</label>
                 <select name="theme">
                 <?php
@@ -75,7 +75,7 @@
                     echo $themes;
                 ?>
                 </select>
-                </div>-->
+                </div>
                 <div>
                     <label>Disable special queries (e.g.: currency conversion)</label>
                     <input type="checkbox" name="disable_special" <?php echo isset($_COOKIE["disable_special"]) ? "checked"  : ""; ?> >
