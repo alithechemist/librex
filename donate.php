@@ -7,6 +7,8 @@
     <title>LibreX - Donate</title>
     </head>
     <body>
+        <h3>Who's wallets are these?</h3>
+        <p>It seems that <a href="https://github.com/hnhx/librex">hnhx</a> diead recently so I'm not sure who owns these wallets. I will leave them for now just in case but keep that in mind.</p>
 	
         <div class="misc-container">
                <h2>Donate to the developer</h1>
