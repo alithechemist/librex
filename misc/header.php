@@ -1,7 +1,6 @@
 
 <?php
-$_COOKIE["theme"]="light"
-
+    $_COOKIE["theme"]="light";
 ?>
 <!DOCTYPE html >
 <html lang="en">
@@ -17,5 +16,5 @@ $_COOKIE["theme"]="light"
                 if (isset($_COOKIE["theme"]))
                     echo htmlspecialchars($_COOKIE["theme"] . ".css");
                 else
-                    echo "dark.css";
+                    echo "light.css";
         ?>"/>
