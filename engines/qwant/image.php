@@ -5,13 +5,13 @@
 
         $page = $page / 10 + 1; // qwant has a different page system
         
-        $url = "https://lite.qwant.com/?q=$query&t=images&p=$page";
+        $url = "https://www.qwant.com/?q=$query&t=images&p=$page";
         $response = request($url);
         $xpath = get_xpath($response);
 
         $results = array();
 
-        foreach($xpath->query("//a[@rel='noopener']") as $result)
+        foreach($xpath->query("//a[@data-testid='imageResult']") as $result)
         {       
                 $image = $xpath->evaluate(".//img", $result)[0];
 

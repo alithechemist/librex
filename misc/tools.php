@@ -1,9 +1,7 @@
 <?php
     function get_base_url($url)
     {
-        $split_url = explode("/", $url);
-        $base_url = $split_url[0] . "//" . $split_url[2] . "/";
-        return $base_url;
+        return parse_url($url, PHP_URL_HOST);
     }
 
     function get_root_domain($url)
@@ -183,7 +181,10 @@
 
     function get_xpath($response)
     {
+       
         $htmlDom = new DOMDocument;
+        //print_r($htmlDom);
+        //print_r($response);
         @$htmlDom->loadHTML($response);
         $xpath = new DOMXPath($htmlDom);
 

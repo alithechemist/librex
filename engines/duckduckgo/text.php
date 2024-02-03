@@ -7,13 +7,13 @@
         $query_encoded = urlencode($query);
         $results = array();
 
-        $domain = $config->google_domain;
+        // $domain = $config->google_domain;
+        $domain = 'com';
         $site_language = isset($_COOKIE["google_language_site"]) ? trim(htmlspecialchars($_COOKIE["google_language_site"])) : $config->google_language_site;
         $results_language = isset($_COOKIE["google_language_results"]) ? trim(htmlspecialchars($_COOKIE["google_language_results"])) : $config->google_language_results;
         $number_of_results = isset($_COOKIE["google_number_of_results"]) ? trim(htmlspecialchars($_COOKIE["google_number_of_results"])) : $config->google_number_of_results;
 
-        $url = "https://www.google.$domain/search?q=$query_encoded&start=$page";
-
+        $url = "https://html.duckduckgo.$domain/html/?q=$query_encoded&kd=-1&s=" . 3 * $page;
         if (3 > strlen($site_language) && 0 < strlen($site_language))
             $url .= "&hl=$site_language";
 
@@ -25,7 +25,7 @@
 
         if (isset($_COOKIE["safe_search"]))
             $url .= "&safe=medium";
- 
+
         $google_ch = curl_init($url);
         curl_setopt_array($google_ch, $config->curl_settings);
         curl_multi_add_handle($mh, $google_ch);
@@ -55,9 +55,10 @@
                 case 7:
                     $wikipedia_language = isset($_COOKIE["wikipedia_language"]) ? trim(htmlspecialchars($_COOKIE["wikipedia_language"])) : $config->wikipedia_language;
                     if (in_array($wikipedia_language, json_decode(file_get_contents("static/misc/wikipedia_langs.json"), true)))
-                    $url = "https://$wikipedia_language.wikipedia.org/w/api.php?format=json&action=query&prop=extracts%7Cpageimages&exintro&explaintext&redirects=1&pithumbsize=500&titles=$query_encoded";
+                        $url = "https://$wikipedia_language.wikipedia.org/w/api.php?format=json&action=query&prop=extracts%7Cpageimages&exintro&explaintext&redirects=1&pithumbsize=500&titles=$query_encoded";
+                    break;
             }
-
+            
             if ($url != NULL)
             {
                 $special_ch = curl_init($url);
@@ -70,12 +71,6 @@
         do {
             curl_multi_exec($mh, $running);
         } while ($running);
-        if (curl_getinfo($google_ch)['http_code'] == '302') {
-                $instances_json = json_decode(file_get_contents("instances.json"), true);
-                $instances = array_map(fn($n) => $n['clearnet'], array_filter($instances_json['instances'], fn($n) => !is_null($n['clearnet'])));
-                header("Location: " . $instances[array_rand($instances)] . "search.php?q=$query");
-                die();
-        }
 
 
         if ($special_search != 0)
@@ -120,12 +115,12 @@
         }
 
         $xpath = get_xpath(curl_multi_getcontent($google_ch));
-
-        foreach($xpath->query("//div[@id='search']//div[contains(@class, 'g')]") as $result)
-        {
-            $url = $xpath->evaluate(".//div[@class='yuRUbf']//a/@href", $result)[0];
-
-            if ($url == null)
+		
+		foreach($xpath->query("/html/body/div[1]/div[". count($xpath->query('/html/body/div[1]/div')) ."]/div/div/div/div") as $result)
+		{
+            $url = $xpath->evaluate(".//h2[@class='result__title']//a/@href", $result)[0];
+			
+			if ($url == null)
                 continue;
 
             if (!empty($results)) // filter duplicate results, ignore special result
@@ -139,8 +134,8 @@
 
             $url = check_for_privacy_frontend($url);
 
-            $title = $xpath->evaluate(".//h3", $result)[0];
-            $description = $xpath->evaluate(".//div[contains(@class, 'VwiC3b')]", $result)[0];
+            $title = $xpath->evaluate(".//h2[@class='result__title']", $result)[0];
+            $description = $xpath->evaluate(".//a[@class='result__snippet']", $result)[0];
 
             array_push($results,
                 array (
@@ -152,13 +147,13 @@
                                       htmlspecialchars($description->textContent)
                 )
             );
-        }
+       }
 
         return $results;
     }
 
     function print_text_results($results)
-    {
+	{
         $special = $results[0];
         if (array_key_exists("special_response", $special))
         {
